@@ -6,7 +6,7 @@
 /*   By: javrodri <javrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 12:56:49 by javrodri          #+#    #+#             */
-/*   Updated: 2019/11/14 07:57:26 by javrodri         ###   ########.fr       */
+/*   Updated: 2021/03/29 13:33:24 by javrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,23 @@ static int	get_size(unsigned int nb)
 	return (size + 1);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char			*str;
 	unsigned int	nb;
 	unsigned int	index;
 	unsigned int	size;
 
+	nb = (unsigned int)n;
 	if (n < 0)
 		nb = (unsigned int)(n * -1);
-	else
-		nb = (unsigned int)n;
 	size = (unsigned int)get_size(nb);
 	index = 0;
-	if (!(str = (char*)malloc(sizeof(char) * (size + 1 + (nb > 0 ? 1 : 0)))))
+	str = (char *)malloc(sizeof(char) * (size + 1 + (nb > 0)));
+	if (!(str))
 		return (NULL);
-	if (n < 0 && (str[index] = '-'))
+	str[index] = '-';
+	if (n < 0)
 		size++;
 	index = size - 1;
 	while (nb >= 10)

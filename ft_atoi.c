@@ -6,7 +6,7 @@
 /*   By: javrodri <javrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 15:51:33 by javrodri          #+#    #+#             */
-/*   Updated: 2019/11/12 14:55:08 by javrodri         ###   ########.fr       */
+/*   Updated: 2021/03/29 13:06:23 by javrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 static int	check(const char **str)
 {
-	int is_negative;
+	int	is_negative;
 
 	while (**str == ' ' || **str == '\t' || **str == '\n'
-			|| **str == '\v' || **str == '\f' || **str == '\r')
+		|| **str == '\v' || **str == '\f' || **str == '\r')
 		(*str)++;
 	is_negative = 0;
 	if (**str == '-' || **str == '+')
@@ -30,7 +30,7 @@ static int	check(const char **str)
 	return (is_negative);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	unsigned int	nb;
 	int				i;
@@ -48,5 +48,7 @@ int			ft_atoi(const char *str)
 		nb = nb * 10 + (*str - 48);
 		++str;
 	}
-	return (((int)is_negative ? -nb : nb));
+	if ((int)is_negative)
+		return (-nb);
+	return (nb);
 }

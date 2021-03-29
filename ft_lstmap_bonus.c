@@ -6,7 +6,7 @@
 /*   By: javrodri <javrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 11:34:27 by javrodri          #+#    #+#             */
-/*   Updated: 2019/11/16 13:18:20 by javrodri         ###   ########.fr       */
+/*   Updated: 2021/03/29 13:50:32 by javrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,23 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new;
-	t_list	*temp;
+	t_list	*gon;
+	t_list	*aux;
+	t_list	*uxgon;
 
-	if (!lst)
-		return (NULL);
-	if (!(new = ft_lstnew(f(lst->content))))
-		return (NULL);
-	if (!(temp = malloc(sizeof(t_list))))
-		return (NULL);
-	temp = new;
-	while (lst)
+	aux = lst;
+	gon = malloc(sizeof(t_list));
+	if (!gon)
+		return (0);
+	auxgon = gon;
+	while (aux)
 	{
-		if (lst->next)
-		{
-			if (!(new->next = ft_lstnew(f(lst->next->content))))
-			{
-				ft_lstclear(&temp, del);
-				return (0);
-			}
-			new = new->next;
-		}
-		lst = lst->next;
+		auxgon->content = f(aux->content);
+		auxgon->next = malloc(sizeof(t_list));
+		if (!(auxgon->next))
+			ft_lstclear(&auxgon, del);
+		aux = aux->next;
+		auxgon = auxgon->next;
 	}
-	new->next = NULL;
-	return (temp);
+	return (gon);
 }

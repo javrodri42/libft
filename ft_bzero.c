@@ -6,7 +6,7 @@
 /*   By: javrodri <javrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 16:14:19 by javrodri          #+#    #+#             */
-/*   Updated: 2019/11/07 08:43:25 by javrodri         ###   ########.fr       */
+/*   Updated: 2021/03/29 13:08:49 by javrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*ptr;
 
-	ptr = (unsigned char*)s;
+	ptr = (unsigned char *) s;
 	while (n-- > 0)
 		*(ptr++) = 0;
 }
